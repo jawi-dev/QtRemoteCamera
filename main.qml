@@ -1,8 +1,8 @@
 import QtQuick 2.6
 import QtQuick.Window 2.2
 import QtMultimedia 5.9
-import CameraSurface 1.0
-import CameraView 1.0
+import TransFilter 1.0
+import ImageItem 1.0
 
 Window {
     id: mainWindow
@@ -19,32 +19,32 @@ Window {
         color: "red"
     }
 
-    /* Camera {
-        objectName: "camera"
+    Camera {
         id: camera
-        // You can adjust various settings in here
-    }*/
-
-    Rectangle {
-        x: 100
-        y: 100
-        width: 300
-        height: 300
-        color: "blue"
-
-        /*VideoOutput {
-            objectName: "videoOutput"
-            source: cameraSurface
-            anchors.fill: parent
-        }*/
-
+        objectName: "camera"
+        viewfinder.resolution: "640x480"
     }
 
-    CameraView {
-        objectName: "cameraView"
+    VideoOutput {
+        id: output
+        source: camera
+        filters: [ transfilter ]
+        anchors.fill: parent
+        autoOrientation: true
+    }
+
+    TransFilter {
+        id: transfilter
+        onFinished: { cameraImage.image = image }
+    }
+
+    ImageItem {
+        id: cameraImage
+        height: 100
+        width: 100
         x: 0
         y: 0
-        width: 300
-        height: 300
     }
+
+
 }

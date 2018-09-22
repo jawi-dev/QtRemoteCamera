@@ -3,32 +3,22 @@
 #include <QDebug>
 #include <QCamera>
 #include <QCameraInfo>
-#include "camerasurface.h"
-#include "cameraview.h"
+
+#include "transfilter.h"
+#include "imageitem.h"
 
 int main(int argc, char *argv[])
 {
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
-
     QGuiApplication app(argc, argv);
 
-    qmlRegisterType<CameraSurface>("CameraSurface", 1, 0, "CameraSurface");
-    qmlRegisterType<CameraView>("CameraView", 1, 0, "CameraView");
+    qmlRegisterType<TransFilter>("TransFilter", 1, 0, "TransFilter");
+    qmlRegisterType<ImageItem>("ImageItem", 1, 0, "ImageItem");
 
     QQmlApplicationEngine engine;
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
     if (engine.rootObjects().isEmpty())
         return -1;
-
-    QObject *rootObject = engine.rootObjects().first();
-    QObject *qmlObject = rootObject->findChild<QObject*>("cameraSurface");
-    CameraSurface *surf = qobject_cast<CameraSurface*>(qmlObject);
-
-    QCamera *camera = new QCamera(QCameraInfo::availableCameras()[0]);
-    if (camera) {
-        camera->setViewfinder(surf);
-        camera->start();
-    }
 
     return app.exec();
 }

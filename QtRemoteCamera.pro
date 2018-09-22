@@ -15,8 +15,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-    camerasurface.cpp \
-    cameraview.cpp
+    transfilter.cpp \
+    imageitem.cpp
 
 RESOURCES += qml.qrc
 
@@ -36,5 +36,6 @@ ios {
 }
 
 HEADERS += \
-    cameraview.h \
-    camerasurface.h
+    transfilter.h \
+    imageitem.h
+
