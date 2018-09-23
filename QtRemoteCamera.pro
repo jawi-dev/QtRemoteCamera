@@ -16,7 +16,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
     transfilter.cpp \
-    imageitem.cpp
+    imageitem.cpp \
+    server.cpp
 
 RESOURCES += qml.qrc
 
@@ -37,5 +38,6 @@ ios {
 
 HEADERS += \
     transfilter.h \
-    imageitem.h
+    imageitem.h \
+    server.h
 
