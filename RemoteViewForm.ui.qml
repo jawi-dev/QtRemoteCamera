@@ -1,39 +1,27 @@
-import QtQuick 2.9
-import QtMultimedia 5.9
+import QtQuick 2.4
 import QtQuick.Controls 2.2
+import Client 1.0
 import ImageItem 1.0
-import TransFilter 1.0
-import Server 1.0
 
 Item {
-    property alias camera: camera
-    property alias transfilter: transfilter
-    property alias server: server
+    property alias client: client
+    property alias serverImage: serverImage
+    property alias connectBtn: connectBtn
     property alias exitBtn: exitBtn
-    property alias statusLabel: statusLabel
-    property alias startBtn: startBtn
 
-    Camera {
-        id: camera
-        objectName: "camera"
-    }
-
-    TransFilter {
-        id: transfilter
-    }
-
-    Server {
-        id: server
+    Client {
+        id: client
     }
 
     Rectangle {
         id: background
-        color: "#8d8892"
+        color: "#b0b3b8"
         anchors.fill: parent
     }
 
     Rectangle {
         id: cameraFrame
+        color: "#d0d0d0"
         anchors.bottomMargin: 8
         anchors.right: column.left
         anchors.bottom: parent.bottom
@@ -43,12 +31,9 @@ Item {
         anchors.leftMargin: 8
         anchors.topMargin: 8
 
-        VideoOutput {
-            source: camera
-            filters: [transfilter]
-            autoOrientation: true
+        ImageItem {
+            id: serverImage
             anchors.fill: parent
-            fillMode: VideoOutput.Stretch
         }
     }
 
@@ -63,26 +48,14 @@ Item {
         anchors.top: parent.top
 
         Button {
-            id: startBtn
-            text: qsTr("Start Server")
+            id: connectBtn
+            text: qsTr("Connect")
         }
 
         Button {
             id: exitBtn
             text: qsTr("Exit")
         }
-    }
-
-    Text {
-        id: statusLabel
-        font.family: "Helvetica"
-        font.pointSize: 14
-        color: "red"
-        text: server.status
-        anchors.bottom: parent.bottom
-        anchors.bottomMargin: 8
-        anchors.left: cameraFrame.left
-        anchors.leftMargin: 2
     }
 }
 

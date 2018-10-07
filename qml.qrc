@@ -1,11 +1,12 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
-        <file>images/logo.png</file>
         <file>SelectView.qml</file>
         <file>SelectViewForm.ui.qml</file>
         <file>CameraView.qml</file>
         <file>CameraViewForm.ui.qml</file>
         <file>qtquickcontrols2.conf</file>
+        <file>RemoteView.qml</file>
+        <file>RemoteViewForm.ui.qml</file>
     </qresource>
 </RCC>

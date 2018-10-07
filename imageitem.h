@@ -8,19 +8,18 @@ class ImageItem : public QQuickPaintedItem
 {
     Q_OBJECT
     Q_PROPERTY(QImage image READ image WRITE setImage NOTIFY imageChanged)
+
 public:
-    ImageItem(QQuickItem *parent = nullptr);
-    QImage image() const;
+    explicit ImageItem(QQuickItem *parent = nullptr) : QQuickPaintedItem(parent) {}
+    QImage image() const { return mImage; }
     void setImage(const QImage &image);
-
     void paint(QPainter *painter);
-
-public slots:
-    void finished(QImage image) { m_image = image; }
 
 signals:
     void imageChanged();
+
 private:
-    QImage m_image;
+    QImage mImage;
 };
-#endif // IMAGEITEM_H
+
+#endif

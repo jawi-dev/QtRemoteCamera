@@ -2,21 +2,17 @@
 #define TRANSFILTER_H
 
 #include <QAbstractVideoFilter>
-#include <QOpenGLContext>
 
 class TransFilter : public QAbstractVideoFilter
 {
     Q_OBJECT
+
 public:
-    explicit TransFilter(QObject *parent = nullptr);
+    explicit TransFilter(QObject *parent = nullptr) : QAbstractVideoFilter(parent) {}
     QVideoFilterRunnable *createFilterRunnable();
 
 signals:
-    void finished(QImage image);
-
-public slots:
-private:
-    QImage mImage;
+    void frameReady(QImage image);
 };
 
 class TransFilterRunnable : public QVideoFilterRunnable
@@ -27,7 +23,6 @@ public:
 
 private:
     TransFilter *mFilter;
-    QImage mLastFrame;
 };
 
-#endif // TRANSFILTER_H
+#endif

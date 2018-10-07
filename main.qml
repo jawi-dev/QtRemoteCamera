@@ -14,6 +14,5 @@ Window {
         id: stackView
         initialItem: "SelectView.qml"
         anchors.fill: parent
-        SelectView{}
     }
 }

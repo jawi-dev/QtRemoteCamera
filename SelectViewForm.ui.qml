@@ -6,7 +6,6 @@ Item {
     id: item1
     property alias button: button
     property alias button1: button1
-    anchors.fill: parent
 
     Rectangle {
         id: rectangle
@@ -45,7 +44,7 @@ Item {
             id: button1
             x: 214
             y: 262
-            text: qsTr("Controller")
+            text: qsTr("Remote")
             anchors.verticalCenterOffset: 42
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.verticalCenter: parent.verticalCenter
